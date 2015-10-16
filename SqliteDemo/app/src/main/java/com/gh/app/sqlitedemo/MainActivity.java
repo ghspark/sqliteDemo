@@ -1,16 +1,34 @@
 package com.gh.app.sqlitedemo;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
+
+import com.gh.app.sqlitedemo.fragment.MedicineFragment;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
+
+    @Bind(R.id.fl_container)
+    FrameLayout fl_container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ButterKnife.bind(this);
+        initView();
+    }
+
+    public void initView() {
+        getFragmentManager().beginTransaction()
+                .addToBackStack(null)
+                .add(R.id.fl_container, new MedicineFragment()).commit();
     }
 
     @Override
